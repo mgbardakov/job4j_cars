@@ -11,6 +11,17 @@ public class CarBody {
     private int id;
     private String name;
 
+    public CarBody() {
+    }
+
+    public CarBody(int id) {
+        this.id = id;
+    }
+
+    public CarBody(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -38,5 +49,13 @@ public class CarBody {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "CarBody{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

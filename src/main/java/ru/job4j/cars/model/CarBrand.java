@@ -11,6 +11,17 @@ public class CarBrand {
     private int id;
     private String name;
 
+    public CarBrand() {
+    }
+
+    public CarBrand(int id) {
+        this.id = id;
+    }
+
+    public CarBrand(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -38,5 +49,13 @@ public class CarBrand {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "CarBrand{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

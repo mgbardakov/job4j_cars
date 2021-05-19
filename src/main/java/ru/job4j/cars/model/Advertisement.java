@@ -1,6 +1,8 @@
 package ru.job4j.cars.model;
 
 import javax.persistence.*;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +13,8 @@ public class Advertisement {
     private int id;
     private String description;
     private boolean onPurchase;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
     @ManyToOne
     @JoinColumn(name = "car_body_id")
     private CarBody carBody;
@@ -20,6 +24,19 @@ public class Advertisement {
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     private Image image;
+
+    public Advertisement() {
+        created = Calendar.getInstance().getTime();
+        onPurchase = true;
+    }
+
+    public Advertisement(String description, CarBody carBody, CarBrand carBrand, Image image) {
+        this();
+        this.description = description;
+        this.carBody = carBody;
+        this.carBrand = carBrand;
+        this.image = image;
+    }
 
     public int getId() {
         return id;
@@ -43,6 +60,14 @@ public class Advertisement {
 
     public void setOnPurchase(boolean onPurchase) {
         this.onPurchase = onPurchase;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public CarBody getCarBody() {
@@ -80,5 +105,18 @@ public class Advertisement {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Advertisement{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", onPurchase=" + onPurchase +
+                ", created=" + created +
+                ", carBody=" + carBody +
+                ", carBrand=" + carBrand +
+                ", image=" + image +
+                '}';
     }
 }
