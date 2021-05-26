@@ -18,7 +18,7 @@ public class LoadData implements ServletContextListener{
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        if(carBrandService.getCarBrandList().size() == 0) {
+        if(carBrandService.getCarBrandList().isEmpty()) {
             loadBrands();
             loadCarBodies();
             loadAds();
